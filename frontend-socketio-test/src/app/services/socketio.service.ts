@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SocketioService {
-  data: any;
   socket: any;
 
   initSocket() {
