@@ -1,0 +1,49 @@
+<small [ngClass]="{ connected: connected }">{{
+  connected ? "Connected" : "Disconnected"
+}}</small>
+<div class="table mb-5">
+  <button
+    type="button"
+    class="btn btn-outline-primary btn-block mb-2"
+    (click)="connectSocket()"
+    [disabled]="connected"
+  >
+    Connect
+  </button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Timestamp</th>
+        <th scope="col">Call ID</th>
+        <th scope="col">Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of returnedData">
+        <td>{{ d.timestamp }}</td>
+        <td>{{ d.ID }}</td>
+        <td>{{ d.duration }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Pagination -->
+<pagination
+  *ngIf="data.length >= itemsPerPage"
+  [itemsPerPage]="itemsPerPage"
+  [boundaryLinks]="true"
+  [totalItems]="data.length"
+  previousText="&lsaquo;"
+  nextText="&rsaquo;"
+  firstText="&laquo;"
+  lastText="&raquo;"
+  [(ngModel)]="currentPage"
+  [maxSize]="maxSize"
+  (pageChanged)="pageChanged($event)"
+  (numPages)="smallnumPages = $event"
+>
+</pagination>
+<small *ngIf="data.length >= itemsPerPage"
+  >Showing page {{ currentPage }} of {{ smallnumPages }}</small
+>
