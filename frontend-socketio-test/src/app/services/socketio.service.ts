@@ -8,30 +8,10 @@ import { Observable } from 'rxjs';
 })
 export class SocketioService {
   data: any;
-
   socket: any;
-
-  constructor() { }
-
-  // setupSocketConnection() {
-  //   this.socket = io(environment.SOCKET_ENDPOINT);
-  //   this.socket.emit('my message', 'Hello from Angular');
-
-  //   this.socket.on('my broadcast', (data: string) => {
-  //     console.log(data);
-  //   });
-
-  //   this.socket.on('call', (msg: { ID: string, duration: number }) => {
-  //     console.log(msg);
-  //     this.data = msg;
-  //   });
-  // }
 
   initSocket() {
     this.socket = io(environment.SOCKET_ENDPOINT);
-    // this.socket.on('call', (msg) => {
-    //   console.log(msg);
-    // });
   }
 
   listen(eventName: string): Observable<any> {
